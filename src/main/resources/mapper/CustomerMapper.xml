@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spd.customer.mapper.CustomerMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spd.customer.beans.Customer">
+        <id column="id" property="id" />
+        <result column="cust_ident" property="custIdent" />
+        <result column="cust_name" property="custName" />
+        <result column="cust_email" property="custEmail" />
+        <result column="cust_pwd" property="custPwd" />
+        <result column="cust_state" property="custState" />
+        <result column="create_time" property="createTime" />
+        <result column="is_del" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cust_ident, cust_name, cust_email, cust_pwd, cust_state, create_time, is_del
+    </sql>
+
+</mapper>
