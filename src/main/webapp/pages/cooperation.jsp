@@ -134,6 +134,7 @@ layui.use(['layer','upload'],function(){
 	    ,exts:'mp4|ogm|m4v|ogv'
 	    ,done: function(res){
 	      console.log(res)
+	      
 	    }
 	  });
 	
