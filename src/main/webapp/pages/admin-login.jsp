@@ -7,7 +7,7 @@
   %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>天天生鲜-登录</title>
+	<title>后台登录</title>
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/main.css">
 </head>
@@ -19,22 +19,21 @@
 	<div class="login_form_bg">
 		<div class="login_form_wrap clearfix">
 			<div class="login_banner fl"></div>
-			<div class="slogan fl">日夜兼程 · 急速送达</div>
+			<div class="slogan fl">草原兴发后台登录</div>
 			<div class="login_form fr">
 				<div class="login_title clearfix">
-					<h1>用户登录</h1>
-					<a href="${PATH}/pages/register.jsp">立即注册</a>
+					<h1>管理员登录</h1>
 				</div>
 				<div class="form_input">
-					<form action="${PATH}/customer/loginInto" method="post">
-						<input type="text" name="formCode" class="name_input" placeholder="请输入用户名或邮箱">
+					<form action="${PATH}/admin/loginInto" method="post">
+						<input type="text" name="adminName" class="name_input" placeholder="请输入用户名或邮箱">
 						<div class="user_error">输入错误</div>
-						<input type="password" name="custPwd" class="pass_input" placeholder="请输入密码">
+						<input type="password" name="adminPassword" class="pass_input" placeholder="请输入密码">
 						<div class="pwd_error">输入错误</div>
 						<div class="more_input clearfix">
 							<input type="checkbox" >
 							<label>记住用户名</label>
-							<a href="${PATH}/pages/forget-pwd.jsp">忘记密码</a>
+							<!-- <a href="#">忘记密码</a> -->
 						</div>
 						<input type="submit" value="登录" class="input_submit">
 					</form>
@@ -47,10 +46,9 @@
 	<script src="${PATH}/static/layui/layui.all.js"></script>
 </body>
 <script type="text/javascript">
-	var error = "${error}"
-	if(error!=""){
-		layui.layer.msg(error,{icon:5})
+	var msg = "${msg}"
+	if(msg!=""){
+		layui.layer.msg(msg,{icon:5})
 	}
-
 </script>
 </html>

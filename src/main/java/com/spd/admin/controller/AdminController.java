@@ -31,9 +31,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	
-	
-	
 	/**
 	 * 退出登录
 	 * */

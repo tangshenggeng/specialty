@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
 <%
@@ -7,6 +6,7 @@
   %>
   <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>草原兴发-首页</title>
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/main.css"/>
@@ -16,18 +16,6 @@
 </head>
 <body>
 	<%@ include file="/pages/common/header.jsp"%>
-
-	<div class="search_bar clearfix">
-		<a href="index.html" class="logo fl"><img src="${PATH}/pages/images/logo.png"></a>
-		<div class="search_con fl">
-			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
-			<input type="button" class="input_btn fr" name="" value="搜索">
-		</div>
-		<div class="guest_cart fr">
-			<a href="#" class="cart_name fl">我的购物车</a>
-			<div class="goods_count fl" id="show_count">1</div>
-		</div>
-	</div>
 
 	<div class="navbar_con">
 		<div class="navbar">
@@ -53,18 +41,18 @@
 		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
-				<li><img src="${PATH}/pages/images/slide.jpg" alt="幻灯片"></li>
-				<li><img src="${PATH}/pages/images/slide02.jpg" alt="幻灯片"></li>
-				<li><img src="${PATH}/pages/images/slide03.jpg" alt="幻灯片"></li>
-				<li><img src="${PATH}/pages/images/slide04.jpg" alt="幻灯片"></li>
+				<li><img style="width: 760px;height: 270px" src="${PATH}/pages/images/slide.jpg" alt="幻灯片"></li>
+				<li><img style="width: 760px;height: 270px"  src="${PATH}/pages/images/slide02.jpg" alt="幻灯片"></li>
+				<li><img style="width: 760px;height: 270px"  src="${PATH}/pages/images/slide03.jpg" alt="幻灯片"></li>
+				<li><img style="width: 760px;height: 270px"  src="${PATH}/pages/images/slide04.jpg" alt="幻灯片"></li>
 			</ul>
 			<div class="prev"></div>
 			<div class="next"></div>
 			<ul class="points"></ul>
 		</div>
 		<div class="adv fl">
-			<a href="#"><img src="${PATH}/pages/images/adv01.jpg"></a>
-			<a href="#"><img src="${PATH}/pages/images/adv02.jpg"></a>
+			<a href="#"><img style="width: 240px;height: 135px" src="${PATH}/pages/images/adv01.jpg"></a>
+			<a href="#"><img style="width: 240px;height: 135px" src="${PATH}/pages/images/adv02.jpg"></a>
 		</div>
 	</div>
 
@@ -301,7 +289,7 @@
 		</div>
 	</div>
 <%@ include file="/pages/common/footer.jsp"%>
-	
+	<script src="${PATH}/static/layui/layui.all.js"></script>	
 	
 </body>
 </html>

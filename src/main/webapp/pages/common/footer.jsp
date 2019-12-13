@@ -5,10 +5,10 @@
 			<span>|</span>
 			<a href="#">联系我们</a>
 			<span>|</span>
-			<a href="#">招聘人才</a>
+			<a href="${PATH}/pages/cooperation.jsp">申请合作</a>
 			<span>|</span>
 			<a href="#">友情链接</a>		
 		</div>
-		<p>CopyRight © 2016 北京天天生鲜信息技术有限公司 All Rights Reserved</p>
-		<p>电话：010-****888    京ICP备*******8号</p>
+		<p>CopyRight © 2019 内蒙古草原兴发特产有限公司 All Rights Reserved</p>
+		<p>电话：12345678911   </p>
 	</div>

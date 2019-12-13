@@ -7,7 +7,7 @@
   %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>天天生鲜-注册</title>
+	<title>天天生鲜-忘记密码</title>
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="${PATH}/pages/css/main.css">
 	<script type="text/javascript" src="${PATH}/pages/js/jquery-1.12.4.min.js"></script>
@@ -36,27 +36,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 		<div class="r_con fr">
 			<div class="reg_title clearfix">
-				<h1>用户注册</h1>
+				<h1>忘记密码</h1>
 				<a href="${PATH}/pages/login.jsp">登录</a>
 			</div>
 			<div class="reg_form clearfix">
-				<form action="${PATH}/customer/registerCust" method="post">
+				<form action="${PATH}/customer/forgetPwd" method="post">
 				<ul>
-					<li>
-						<label>用户名:</label>
-						<input type="text" name="custName" id="user_name">
-						<span class="error_tip">提示信息</span>
-					</li>					
-					<li>
-						<label>密码:</label>
-						<input type="password" name="formPwd1" id="pwd">
-						<span class="error_tip">提示信息</span>
-					</li>
-					<li>
-						<label>确认密码:</label>
-						<input type="password" name="formPwd2" id="cpwd">
-						<span class="error_tip">提示信息</span>
-					</li>
 					<li>
 						<label>邮箱:</label>
 						<input type="text" name="custEmail" id="email">
@@ -69,13 +54,18 @@ input[type=number]::-webkit-outer-spin-button {
 						<input type="button" onclick="sendemail()" id="codeBtn" value="获取验证码" style="width: 108px;height: 40px;font-size: 14px;">
 						<span class="error_tip">提示信息</span>
 					</li>
-					<li class="agreement">
-						<input type="checkbox" name="allow" id="allow" checked="checked">
-						<label>同意”天天生鲜用户使用协议“</label>
-						<span class="error_tip2">提示信息</span>
+					<li>
+						<label>密码:</label>
+						<input type="password" name="formPwd1" id="pwd">
+						<span class="error_tip">提示信息</span>
+					</li>
+					<li>
+						<label>确认密码:</label>
+						<input type="password" name="formPwd2" id="cpwd">
+						<span class="error_tip">提示信息</span>
 					</li>
 					<li class="reg_sub">
-						<input type="submit" value="注 册">
+						<input type="submit" value="修改">
 					</li>
 				</ul>				
 				</form>

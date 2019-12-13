@@ -16,15 +16,15 @@ public class AnalysisKeyWordsListUtils {
 		ArrayList<Integer> list = new ArrayList<>();
 		for (Map map2 : arrayList) {
 			String object = (String) map2.get("name");
-			if(object.equals("sortId")) {
-				String sortId = (String) map2.get("value");
-				Integer id = Integer.parseInt(sortId);
-				list.add(id);
-			}
+//			if(object.equals("sortId")) {
+//				String sortId = (String) map2.get("value");
+//				Integer id = Integer.parseInt(sortId);
+//				list.add(id);
+//			}
 			String object2 = (String) map2.get("value");
 			map.put(object, object2);
 		}
-		map.put("sortId",list);
+//		map.put("sortId",list);
 		return map;
 	}
 }
