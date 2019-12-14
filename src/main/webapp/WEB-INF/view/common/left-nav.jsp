@@ -14,9 +14,10 @@
         <li class="layui-nav-item">
           <a href="javascript:;"><i class="layui-icon layui-icon-find-fill"></i> 合作管理</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;">申请合作</a></dd>
-            <dd><a href="javascript:;">列表二</a></dd>
-            <dd><a href="">超链接</a></dd>
+            <dd><a href="${PATH}/cooperation/toApplicationPage">申请中</a></dd>
+            <dd><a href="${PATH}/cooperation/toInvestigationPage">考察中</a></dd>
+            <dd><a href="${PATH}/cooperation/toAdoptPage">通过</a></dd>
+            <dd><a href="${PATH}/cooperation/toAbnormalPage">未通过</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item"><a href="">云市场</a></li>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spd.cooperation.mapper.CooperationMapper">
+
+    <!-- 开启二级缓存 -->
+    <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spd.cooperation.beans.Cooperation">
+        <id column="cooperation_id" property="cooperationId" />
+        <result column="coop_ident" property="coopIdent" />
+        <result column="coop_name" property="coopName" />
+        <result column="coop_email" property="coopEmail" />
+        <result column="coop_video" property="coopVideo" />
+        <result column="coop_province" property="coopProvince" />
+        <result column="coop_city" property="coopCity" />
+        <result column="coop_county" property="coopCounty" />
+        <result column="detail_addr" property="detailAddr" />
+        <result column="coop_remark" property="coopRemark" />
+        <result column="coop_state" property="coopState" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+        <result column="admin_handle" property="adminHandle" />
+        <result column="create_time" property="createTime" />
+        <result column="is_del" property="isDel" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        cooperation_id, coop_ident, coop_name, coop_email, coop_video, coop_province, coop_city, coop_county, detail_addr, coop_remark, coop_state, start_time, end_time, admin_handle, create_time, is_del
+    </sql>
+
+</mapper>

@@ -42,55 +42,70 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<h1>申请合作</h1>
 			</div>
 				<form class="layui-form">
-					<!-- 提示：如果你不想用form，你可以换成div等任何一个普通元素 -->
-					<div class="layui-form-item">
+					<input type="hidden" id="videoInput" name="coopVideo"/>
+z					<div class="layui-form-item">
 						<label class="layui-form-label">称呼</label>
 						<div class="layui-input-block">
-							<input type="text" name="" placeholder="请输入" autocomplete="off"
+							<input type="text" name="coopName" lay-verify="required" placeholder="请输入" autocomplete="off"
 								class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">联系方式</label>
+						<label class="layui-form-label">电话</label>
 						<div class="layui-input-block">
-							<input type="text" name="" placeholder="请输入" autocomplete="off"
+							<input type="text" name="coopPhone" lay-verify="phone" placeholder="请输入" autocomplete="off"
+								class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">Email</label>
+						<div class="layui-input-block">
+							<input type="text" name="coopEmail" lay-verify="email" placeholder="请输入" autocomplete="off"
 								class="layui-input">
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<label class="layui-form-label">上传视频</label>
 						<div class="layui-input-block">
-							<button type="button" class="layui-btn" id="test5"><i class="layui-icon"></i>上传视频</button>
+							<button type="button" class="layui-btn" id="test5"><i class="layui-icon"></i>选择视频</button>
+							<span id="demoText"></span>	
+							<button type="button" class="layui-btn layui-btn-normal" id="uploadAction"><i class="layui-icon layui-icon-ok"></i>确认上传</button>
 						</div>
 					</div>
 					<div class="layui-form-item" id="area-picker">
 			            <div class="layui-form-label">地址</div>
 			            <div class="layui-input-inline" style="width: 200px;">
-			                <select name="province" class="province-selector" data-value="内蒙古自治区" lay-filter="province-1">
+			                <select name="coopProvince" class="province-selector" data-value="内蒙古自治区" lay-filter="province-1">
 			                    <option value="">请选择省</option>
 			                </select>
 			            </div>
 			            <div class="layui-input-inline" style="width: 200px;">
-			                <select name="city" class="city-selector" data-value="呼和浩特市" lay-filter="city-1">
+			                <select name="coopCity" class="city-selector" data-value="呼和浩特市" lay-filter="city-1">
 			                    <option value="">请选择市</option>
 			                </select>
 			            </div>
 			            <div class="layui-input-inline" style="width: 200px;">
-			                <select name="county" class="county-selector" data-value="新城区" lay-filter="county-1">
+			                <select name="coopCounty" class="county-selector" data-value="新城区" lay-filter="county-1">
 			                    <option value="">请选择区</option>
 			                </select>
 			            </div>
 			        </div>
 			        <div class="layui-form-item">
+						<label class="layui-form-label">详细地址</label>
+						<div class="layui-input-block">
+							<textarea name="detailAddr" required lay-verify="required" placeholder="请输入"  lay-verify="required" class="layui-textarea"></textarea>
+						</div>
+					</div>
+			        <div class="layui-form-item">
 						<label class="layui-form-label">备注</label>
 						<div class="layui-input-block">
-							<textarea name="" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+							<textarea name="coopRemark" required lay-verify="required" placeholder="请输入"  lay-verify="required" class="layui-textarea"></textarea>
 						</div>
 					</div>
 					<div class="layui-form-item">
 						<div class="layui-input-block">
-							<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+							<button class="layui-btn" lay-submit lay-filter="coopSumbit">立即提交</button>
+							<button type="reset" id="resetBtn" class="layui-btn layui-btn-primary">重置</button>
 						</div>
 					</div>
 					<!-- 更多表单结构排版请移步文档左侧【页面元素-表单】一项阅览 -->
@@ -104,8 +119,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 </body>
 <script src="${PATH}/static/layui/layui.all.js"></script>
+<script src="${PATH}/static/js/jquery2.0-min.js"></script>
 <script type="text/javascript">
-//配置插件目录
+//配置地址
 layui.config({
     base: '${PATH}/static/layui/mods/'
     , version: '1.0'
@@ -118,8 +134,6 @@ layui.use(['layer', 'form', 'layarea'], function () {
     layarea.render({
         elem: '#area-picker',
         change: function (res) {
-            //选择结果
-            console.log(res);
         }
     });
 });
@@ -128,16 +142,60 @@ layui.use(['layer','upload'],function(){
     , upload = layui.upload;
 	 upload.render({
 	    elem: '#test5'
-	    ,url: '/upload/'
+	    ,url: '${PATH}/cooperation/uploadVideo'
 	    ,accept: 'video' //视频
-	    ,acceptMime:"video/mp4,video/Ogg"
-	    ,exts:'mp4|ogm|m4v|ogv'
+	    ,acceptMime:"video/mp4"
+	    ,exts:'mp4|m4v'
+	    ,size:51200	//视频不超过50M
+	    ,auto:false
+	    ,bindAction:"#uploadAction"
 	    ,done: function(res){
-	      console.log(res)
-	      
+    	 //如果上传失败
+	      if(res.code > 0){
+	        return layer.msg(res.msg,{icon:6});
+	      }
+	      //上传成功
+	      $("#videoInput").val(res.data);
+	      return layer.msg(res.msg,{icon:6});
+	    }
+	    ,error: function(){
+	      //演示失败状态，并实现重传
+	      var demoText = $('#demoText');
+	      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+	      demoText.find('.demo-reload').on('click', function(){
+	        uploadInst.upload();
+	      });
 	    }
 	  });
-	
 });
+layui.use(['layer', 'form'], function () {
+    var layer = layui.layer
+        , form = layui.form;
+    form.on('submit(coopSumbit)', function(data){
+    	 var videoPath = $("#videoInput").val();
+    	 if(videoPath == ''){
+    		 layer.msg("请选择视频并上传！")
+    		 return false;
+    	 }
+    	 var datas = data.field 
+    	 $.ajax({
+    		 url:"${PATH}/cooperation/addCoopera",
+    		 method:"POST",
+    		 data:datas,
+    		 success:function(res){
+   				if(res.code==100){
+   					layer.msg(res.extend.msg,{icon:6},function(){
+   						$("#resetBtn").click();
+   					})
+   				}else{
+   					layer.msg(res.extend.msg,{icon:5})	
+   				}
+   			},error:function(){
+   				layer.msg("系统错误")
+   			}
+    	 });
+    	 return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+})
 </script>
 </html>
