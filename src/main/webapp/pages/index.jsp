@@ -56,7 +56,7 @@
 		</div>
 	</div>
 
-	<div class="list_model">
+	<div class="list_model" id="freshFruit">
 		<div class="list_title clearfix">
 			<h3 class="fl" id="model01">新鲜水果</h3>
 			<div class="subtitle fl">
@@ -289,7 +289,10 @@
 		</div>
 	</div>
 <%@ include file="/pages/common/footer.jsp"%>
-	<script src="${PATH}/static/layui/layui.all.js"></script>	
+<script src="${PATH}/static/layui/layui.all.js"></script>	
+<script type="text/javascript">
 	
+
+</script>	
 </body>
 </html>

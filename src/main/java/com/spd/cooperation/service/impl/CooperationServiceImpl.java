@@ -4,6 +4,11 @@ import com.spd.cooperation.beans.Cooperation;
 import com.spd.cooperation.mapper.CooperationMapper;
 import com.spd.cooperation.service.CooperationService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +21,14 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CooperationServiceImpl extends ServiceImpl<CooperationMapper, Cooperation> implements CooperationService {
+	
+	@Autowired
+	private CooperationMapper coopMapper;
+	
+	@Override
+	public List<Map<String, String>> getCoopsBySelect() {
+		List<Map<String, String>> list= coopMapper.getCoopsBySelect();
+		return list;
+	}
 
 }

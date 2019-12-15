@@ -29,5 +29,5 @@
     <sql id="Base_Column_List">
         cooperation_id, coop_ident, coop_name, coop_email, coop_video, coop_province, coop_city, coop_county, detail_addr, coop_remark, coop_state, start_time, end_time, admin_handle, create_time, is_del
     </sql>
-
+	
 </mapper>

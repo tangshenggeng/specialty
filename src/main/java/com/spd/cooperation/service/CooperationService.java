@@ -1,6 +1,10 @@
 package com.spd.cooperation.service;
 
 import com.spd.cooperation.beans.Cooperation;
+
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -12,5 +16,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2019-12-14
  */
 public interface CooperationService extends IService<Cooperation> {
+
+	List<Map<String, String>> getCoopsBySelect();
 
 }

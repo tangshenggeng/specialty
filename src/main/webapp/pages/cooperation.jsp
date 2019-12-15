@@ -152,7 +152,7 @@ layui.use(['layer','upload'],function(){
 	    ,done: function(res){
     	 //如果上传失败
 	      if(res.code > 0){
-	        return layer.msg(res.msg,{icon:6});
+	        return layer.msg(res.msg,{icon:5});
 	      }
 	      //上传成功
 	      $("#videoInput").val(res.data);

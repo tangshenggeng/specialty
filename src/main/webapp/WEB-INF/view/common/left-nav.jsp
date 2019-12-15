@@ -16,8 +16,17 @@
           <dl class="layui-nav-child">
             <dd><a href="${PATH}/cooperation/toApplicationPage">申请中</a></dd>
             <dd><a href="${PATH}/cooperation/toInvestigationPage">考察中</a></dd>
-            <dd><a href="${PATH}/cooperation/toAdoptPage">通过</a></dd>
+            <dd><a href="${PATH}/cooperation/toCooperatingPage">合作中</a></dd>
+            <dd><a href="${PATH}/cooperation/toStopCoopPage">合作停止</a></dd>
             <dd><a href="${PATH}/cooperation/toAbnormalPage">未通过</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;"><i class="layui-icon layui-icon-cart"></i> 商品管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="${PATH}/food/toAddFoodPage">添加商品</a></dd>
+            <dd><a href="${PATH}/food/toShowFoodPage">展示商品</a></dd>
+            <dd><a href="${PATH}/food/toHideFoodPage">下架商品</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item"><a href="">云市场</a></li>
