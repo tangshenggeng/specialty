@@ -12,6 +12,6 @@
 		<p>CopyRight © 2019 内蒙古草原兴发特产有限公司 All Rights Reserved</p>
 		<p>电话：12345678911   </p>
 	</div>
-	<script src="${PATH}/static/js/jquery2.0-min.js"></script>
+	
 	<script type="text/javascript" src="${PATH}/static/vue/vue.min.js"></script>
 <script type="text/javascript" src="${PATH}/static/vue/vue-resource.min.js"></script>

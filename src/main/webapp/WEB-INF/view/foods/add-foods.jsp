@@ -42,13 +42,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			<div class="layui-form-item">
 			    <label class="layui-form-label">名称</label>
 			    <div class="layui-input-block">
-			      <input type="text" name="foodName" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="text" name="foodName" required lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">描述</label>
 			    <div class="layui-input-block">
-			      <input type="text" name="foodDesc" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="text" name="foodDesc" required lay-verify="required"  placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			  <div class="layui-form-item">
@@ -59,31 +59,31 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				    </div>
 			    </div>
 			    <div class="layui-input-block" style="display: none;">
-			    	<textarea id="introduceText"  name="foodIntroduce" required lay-verify="required" placeholder="请输入" class="layui-textarea"></textarea>
+			    	<textarea id="introduceText"  name="foodIntroduce"  placeholder="请输入" class="layui-textarea"></textarea>
 			    </div>
 			  </div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">原价</label>
 			    <div class="layui-input-block">
-			      <input type="number" lay-verify="required" name="foodOldPrice" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="number" required lay-verify="required" name="foodOldPrice" placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">现价</label>
 			    <div class="layui-input-block">
-			      <input type="number" lay-verify="required" name="foodPresentPrice" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="number" required lay-verify="required" name="foodPresentPrice" placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			<div class="layui-form-item">
 			    <label class="layui-form-label">单位</label>
 			    <div class="layui-input-block">
-			      <input type="text" lay-verify="required" name="foodMassUnit" placeholder="500g" autocomplete="off" class="layui-input">
+			      <input type="text"  required lay-verify="required" name="foodMassUnit" placeholder="500g" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			  <div class="layui-form-item">
 			    <label class="layui-form-label">数量</label>
 			    <div class="layui-input-block">
-			      <input type="number" lay-verify="required" name="foodStock" placeholder="请输入" autocomplete="off" class="layui-input">
+			      <input type="number" required lay-verify="required" name="foodStock" placeholder="请输入" autocomplete="off" class="layui-input">
 			    </div>
 			  </div>
 			  <div class="layui-form-item">
@@ -132,7 +132,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 			
 			<div class="layui-form-item">
 				<div class="layui-input-block">
-					<button class="layui-btn" id="addFoodBtn" lay-submit lay-filter="addFood">立即提交</button>
+					<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
 					<button type="reset" id="resetBtn" class="layui-btn layui-btn-primary">重置</button>
 				</div>
 			</div>
@@ -186,10 +186,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
         'quote',  // 引用
         'image',  // 插入图片
     ]
-    editor.customConfig.onchange = function (html) {
-        // 监控变化，同步更新到 textarea
-        $introduceText.val(html)
-    }
 	// 隐藏“网络图片”tab
     editor.customConfig.showLinkImg = false
 	editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
@@ -224,6 +220,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	        insertImg(url)	//回显
     	    }
     	}
+    editor.customConfig.onchange = function (html) {
+        // 监控变化，同步更新到 textarea
+        $introduceText.val(html)
+    }
     editor.create()
     // 初始化 textarea 的值
     $introduceText.val(editor.txt.html())
@@ -265,27 +265,26 @@ layui.use(['layer','upload'], function(){
 layui.use(['layer','form'], function(){
 	var layer = layui.layer,
 	form = layui.form;
-	form.on('submit(addFood)', function(data){
-		  var datas = data.field
-		  condole.log(datas);
-		  $.ajax({
-			url:"${PATH}/food/addFood",
-			data:datas,
-			method:"post",
-			success:function(res){
-				if(res.code==100){
-					layer.msg(res.extend.msg,{icon:6},function(){
-						location.reload() 
-					})
-				}else{
-					layer.msg(res.extend.msg,{icon:5})	
-				}
-			},error:function(){
-				layer.msg("系统错误")
+	form.on('submit(*)', function(data){
+	  var datas = data.field
+	  $.ajax({
+		url:"${PATH}/food/addFood",
+		data:datas,
+		method:"post",
+		success:function(res){
+			if(res.code==100){
+				layer.msg(res.extend.msg,{icon:6},function(){
+					location.reload() 
+				})
+			}else{
+				layer.msg(res.extend.msg,{icon:5})	
 			}
-		  });
-		  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-		});
+		},error:function(){
+			layer.msg("系统错误")
+		}
+	  })
+	  return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+	});
 });
 </script>
 </body>

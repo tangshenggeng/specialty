@@ -80,6 +80,10 @@ public class Food extends Model<Food> {
      */
     private String isShow;
     /**
+     * 已售
+     * */
+    private Integer soldNum;
+    /**
      * 上架时间
      */
     @TableField(fill = FieldFill.INSERT)
@@ -217,13 +221,24 @@ public class Food extends Model<Food> {
 		this.isShow = isShow;
 	}
 
+	public Integer getSoldNum() {
+		return soldNum;
+	}
+
+	public void setSoldNum(Integer soldNum) {
+		this.soldNum = soldNum;
+	}
+
 	@Override
 	public String toString() {
 		return "Food [foodId=" + foodId + ", foodIdent=" + foodIdent + ", foodName=" + foodName + ", foodDesc="
 				+ foodDesc + ", foodIntroduce=" + foodIntroduce + ", foodOldPrice=" + foodOldPrice
 				+ ", foodPresentPrice=" + foodPresentPrice + ", foodMassUnit=" + foodMassUnit + ", foodStock="
 				+ foodStock + ", foodSort=" + foodSort + ", foodImg=" + foodImg + ", foodSupplier=" + foodSupplier
-				+ ", isShow=" + isShow + ", createTime=" + createTime + ", isDel=" + isDel + "]";
+				+ ", isShow=" + isShow + ", soldNum=" + soldNum + ", createTime=" + createTime + ", isDel=" + isDel
+				+ "]";
 	}
+
+	
 
 }

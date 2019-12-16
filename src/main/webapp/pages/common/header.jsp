@@ -14,7 +14,7 @@
 						<span>|</span>
 						<a href="${PATH}/pages/user_center_info.jsp">用户中心</a>
 						<span>|</span>
-						<a href="cart.html">我的购物车</a>
+						<a href="${PATH}/pages/cart.jsp">我的购物车</a>
 						<span>|</span>
 						<a href="${PATH}/pages/user_center_order.jsp">我的订单</a>
 						<span>|</span>
@@ -36,15 +36,18 @@
 	</div>		
 </div>
 <div class="search_bar clearfix">
-		<a href="index.html" class="logo fl"><img style="border:0;width:100px;height:75px;" src="${PATH}/pages/images/logo.png"></a>
+		<a href="${PATH}/pages/index.jsp" class="logo fl"><img style="border:0;width:100px;height:75px;" src="${PATH}/pages/images/logo.png"></a>
 		<div class="search_con fl">
-			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
-			<input type="button" class="input_btn fr" name="" value="搜索">
+			<form action="${PATH}/food/findFoodsByKeyWords" method="post">
+				<input type="text" class="input_text fl" name="foodName" placeholder="搜索商品">
+				<input type="submit" class="input_btn fr" value="搜索">
+			</form>
+			
 		</div>
 		<c:choose>
 		<c:when test="${not empty sessionScope.name}">
 			<div class="guest_cart fr">
-				<a href="#" class="cart_name fl">我的购物车</a>
+				<a href="${PATH}/pages/cart.jsp" class="cart_name fl">我的购物车</a>
 				<div class="goods_count fl" id="show_count">1</div>
 			</div>
 		</c:when>
