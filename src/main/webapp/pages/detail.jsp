@@ -61,21 +61,22 @@ input[type=number]::-webkit-outer-spin-button {
 
 		<div class="goods_detail_list fr">
 			<h3>${food.foodName}</h3>
-			<p>${food.foodDesc}</p>
+			<p >${food.foodDesc}</p>
 			<div class="prize_bar">
 				<span class="show_pirze">原价：<del>¥ ${food.foodOldPrice}</del><em>现价：¥ ${food.foodPresentPrice}</em></span>
-				<span class="show_unit">单  位：${food.foodMassUnit}</span>
-				<span class="show_unit">库存：${food.foodStock}</span>
+				<span class="show_unit" >单  位：${food.foodMassUnit}</span>
+				<span class="show_unit">库存：<span >${food.foodStock}</span></span>
 			</div>
 			<div class="total">总价：<em id="totalPrice">${food.foodPresentPrice}</em> 元</div>
 			<div class="goods_num clearfix">
 				<div class="num_name fl">数 量：</div>
 				<div class="num_add fl">
+					<input type="hidden" value="${food.foodId}" id="foodIdInput"/>
 					<input type="number" id="foodCount" class="num_show fl" value="1" style="width: 100%">
 				</div> 
 			</div>
 			<div class="operate_btn">
-				<a href="javascript:;" class="buy_btn">立即购买</a>
+				<!-- <a href="javascript:;" class="buy_btn">立即购买</a> -->
 				<a href="javascript:;" class="add_cart" id="add_cart">加入购物车</a>				
 			</div>
 		</div>
@@ -97,15 +98,42 @@ input[type=number]::-webkit-outer-spin-button {
 					<div>${food.foodIntroduce}</div>
 				</dl>
 		    </div>
-		    <div class="layui-tab-item">评论</div>
+		    <div class="layui-tab-item" id="evaShow">
+		    	<blockquote class="layui-elem-quote layui-quote-nm" v-for="item in evas">
+					<h1>{{item.custName}} <span>{{item.time | moment}}</span></h1><br>
+					<p>{{item.text}}</p>
+				</blockquote>
+		    </div>
 		  </div>
 		</div> 
 	</div>
-
 	<%@ include file="/pages/common/footer.jsp"%>
-
+	<script src="${PATH}/static/js/comment.js"></script>
 	<script src="${PATH}/static/js/jquery2.0-min.js"></script>
 	<script src="${PATH}/static/layui/layui.all.js"></script>
+	<script>
+		var evaShow = new Vue({
+			el:"#evaShow",
+			 data:{
+				 evas:[],
+				 foodId:"${food.foodId}"
+			 },created:function(){
+				//购物车
+				this.$http.get("${PATH}/evaluate/getEvaByShow/"+this.foodId).then(function(response){
+					console.log(response.body)
+					//成功
+					this.evas=response.body;
+				},function(response) {
+					//错误
+					console.log("系统错误！")
+				}); 
+			 }
+		});
+		Vue.filter('moment', function (value, formatString) {
+	        formatString = formatString || 'YYYY-MM-DD';
+	        return moment(value).format(formatString);
+	    });
+	</script>
 <script>
 	//联动
 	$("#foodCount").bind('input propertychange', function() {
@@ -114,7 +142,41 @@ input[type=number]::-webkit-outer-spin-button {
 		var price = '${food.foodPresentPrice}'	//现价
 	    $("#totalPrice").html(num1 * price)
 	});
+	
+	//加入购物车
+	$("#add_cart").click(function(){
+		layui.use('layer',function(){
+			var ident = "${sessionScope.ident}"
+			if(ident==""){
+				layer.msg("请您先登录！")
+				return false;
+			}
+			var foodId = $("#foodIdInput").val()			
+			var foodCount = $("#foodCount").val()			
+			var foodStockSpan = '${food.foodStock}'
+			if(parseInt(foodCount)>parseInt(foodStockSpan)||parseInt(foodCount)==0||foodCount==""){
+				layer.msg("输入的数量有误！")
+				return false;
+			}
+			$.ajax({
+				url:"${PATH}/cart/addCartByCust/"+ident+"/"+foodId+"/"+foodCount,
+				method:"get",
+				success:function(res){
+					if(res.code==100){
+						layer.msg(res.extend.msg,{icon:6},function(){
+							location.reload()
+						})
+					}else{
+						layer.msg(res.extend.msg,{icon:5})	
+					}
+				},error:function(){
+					layer.msg("系统错误")
+				}
 
+			});
+		});
+	});
+	
 </script>
 	
 </body>

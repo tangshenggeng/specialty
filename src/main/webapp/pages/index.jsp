@@ -228,7 +228,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getFruitsByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.fruits=response.body;
 			},function(response) {
@@ -244,7 +243,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getSeafoodsByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.seafoods=response.body;
 			},function(response) {
@@ -260,7 +258,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getMeetfoodsByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.meetfoods=response.body;
 			},function(response) {
@@ -276,7 +273,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getEggfoodsByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.eggfoods=response.body;
 			},function(response) {
@@ -292,7 +288,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getVegetablesByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.vegetablesFoods=response.body;
 			},function(response) {
@@ -308,7 +303,6 @@
 		},created: function () {
 			//新鲜水果
 			this.$http.get("${PATH}/food/getIceFoodsByShow").then(function(response){
-				console.log(response.body)
 				//成功
 				this.iceFoods=response.body;
 			},function(response) {

@@ -14,9 +14,9 @@
 						<span>|</span>
 						<a href="${PATH}/pages/user_center_info.jsp">用户中心</a>
 						<span>|</span>
-						<a href="${PATH}/pages/cart.jsp">我的购物车</a>
+						<a href="${PATH}/cart/getMyCart/${sessionScope.ident}">我的购物车</a>
 						<span>|</span>
-						<a href="${PATH}/pages/user_center_order.jsp">我的订单</a>
+						<a href="${PATH}/order/getMyOrders/${sessionScope.ident}">我的订单</a>
 						<span>|</span>
 						<a href="${PATH}/customer/loginOut">退出登录</a>
 					</div>
@@ -47,8 +47,8 @@
 		<c:choose>
 		<c:when test="${not empty sessionScope.name}">
 			<div class="guest_cart fr">
-				<a href="${PATH}/pages/cart.jsp" class="cart_name fl">我的购物车</a>
-				<div class="goods_count fl" id="show_count">1</div>
+				<a href="${PATH}/cart/getMyCart/${sessionScope.ident}" class="cart_name fl">我的购物车</a>
+				<div class="goods_count fl" id="show_count">*</div>
 			</div>
 		</c:when>
 		</c:choose>

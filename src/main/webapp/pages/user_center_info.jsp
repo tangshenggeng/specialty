@@ -18,21 +18,21 @@
 			<h3>用户中心</h3>
 			<ul>
 				<li><a href="${PATH}/pages/user_center_info.jsp" class="active">· 个人信息</a></li>
-				<li><a href="${PATH}/pages/user_center_order.jsp">· 全部订单</a></li>
-				<li><a href="${PATH}/pages/user_center_site.jsp">· 收货地址</a></li>
+				<li><a href="${PATH}/order/getMyOrders/${sessionScope.ident}">· 全部订单</a></li>
+				<%-- <li><a href="${PATH}/pages/user_center_site.jsp">· 收货地址</a></li> --%>
 			</ul>
 		</div>
 		<div class="right_content clearfix">
 				<div class="info_con clearfix">
 				<h3 class="common_title2">基本信息</h3>
 						<ul class="user_info_list">
-							<li><span>用户名：</span>18210569700</li>
-							<li><span>联系方式：</span>18210569700</li>
-							<li><span>联系地址：</span>北京市昌平区</li>			
+							<li><span>序列号：</span>${sessionScope.ident}</li>
+							<li><span>用户名：</span>${sessionScope.name}</li>
+							<!-- <li><span>联系地址：</span>北京市昌平区</li> -->			
 						</ul>
 				</div>
 				
-				<h3 class="common_title2">最近浏览</h3>
+				<!-- <h3 class="common_title2">最近浏览</h3>
 				<div class="has_view_list">
 					<ul class="goods_type_list clearfix">
 				<li>
@@ -85,7 +85,7 @@
 					</div>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		</div>
 	</div>
 

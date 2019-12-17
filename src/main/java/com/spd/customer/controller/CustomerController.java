@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
+import com.spd.cart.beans.Cart;
+import com.spd.cart.service.CartService;
 import com.spd.code.beans.RegiterCode;
 import com.spd.code.service.RegiterCodeService;
 import com.spd.customer.beans.Customer;
@@ -47,6 +49,9 @@ public class CustomerController {
 	
 	@Autowired
 	private RegiterCodeService regiterCodeSer;
+	
+	@Autowired
+	private CartService cartSer;
 	
 	/**
 	 * 批量拉黑
