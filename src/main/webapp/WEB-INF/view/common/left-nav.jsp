@@ -29,8 +29,18 @@
             <dd><a href="${PATH}/food/toHideFoodPage">下架商品</a></dd>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="">云市场</a></li>
-        <li class="layui-nav-item"><a href="">发布商品</a></li>
+        <li class="layui-nav-item">
+          <a href="javascript:;"><i class="layui-icon layui-icon-chart"></i> 订单管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="${PATH}/order/toWaitPage">待发货</a></dd>
+            <dd><a href="${PATH}/order/toAlreadyPage">已发货</a></dd>
+            <dd><a href="${PATH}/order/toConfirmPage">确认收货</a></dd>
+            <dd><a href="${PATH}/order/toAskPage">申请退货</a></dd>
+            <dd><a href="${PATH}/order/toCompletePage">完成</a></dd>
+          </dl>
+        </li>
+        <!-- <li class="layui-nav-item"><a href=""><i class="layui-icon layui-icon-survey"></i> 商品评价</a></li> -->
+        <!-- <li class="layui-nav-item"><a href="">发布商品</a></li> -->
       </ul>
     </div>
   </div>
